@@ -1,0 +1,104 @@
+term.clear()
+function normalColor()
+ term.setTextColor(colors.white)
+ term.setBackgroundColor(colors.black)
+end
+isOnDesktop = false
+function clock()
+ while true do
+  if isOnDesktop and hasToStop == false then
+   time = os.time()
+   time = textutils.formatTime(time,true)
+   term.setCursorPos(52-#time, 19)
+   term.setBackgroundColor(colors.cyan)
+   term.setTextColor(colors.white)
+   write(time)
+  end 
+  sleep(1)
+ end
+end
+
+function all()
+ function boot()
+  --NukeOS Boot
+  li = paintutils.loadImage(".NukeOS/load")
+  paintutils.drawImage(li,1,1)
+  NukeOS = [[
+|\    | |       | |   / |-----    /-----\  --------
+| \   | |       | |  /  |        |       | |      
+|  \  | |       | |-<   |---     |       | --------
+|   \ | |       | |  \  |        |       |        |
+|    \|  \_____/  |   \ |-----    \-----/  --------]]
+  term.setCursorPos(1, 1)
+  term.setBackgroundColor(colors.black)
+  print(NukeOS)
+  sleep(1)
+  --progress bar
+  local start, finish = 15, 35
+  for i = start, finish do
+   term.setBackgroundColor(colors.lime)
+   term.setCursorPos(i, 18)
+   term.write(" ")
+   --%
+   term.setTextColor(colors.white)
+   local per = math.floor((i - start) / (finish - start) * 100)
+   term.setCursorPos(24, 18)
+   if per < 50 then
+    term.setBackgroundColor(colors.black)
+    term.write(per .. "%")
+   else
+    term.setBackgroundColor(colors.lime)
+    term.write(per .. "%")
+   end
+   sleep(0.1)
+  end
+ end
+ 
+ boot()
+ --Login
+ if not fs.exists(".NukeOS/.NukeOS_Users") then
+  term.setCursorPos(1,1)
+  term.setBackgroundColor(colors.black)
+  term.clear()
+  term.setTextColor(colors.white)
+  print("How many users do you wanna create? 1 or 2")
+  numberOfUsers = read()
+  if numberOfUsers == "1" then
+   print("Choose your username:")
+   root = read()
+   print("Now choose your password:")
+   rootp = read("*")
+  elseif numberOfUsers == "2" then  
+   print("Choose your username:")
+   root = read()
+   print("Now choose your password:")
+   rootp = read("*")
+   print("Choose your second user's username:")
+   second = read()
+   print("Choose your second user's password:")
+   secondp = read("*")   
+  else
+  print("Number should be 1 or 2")
+  os.reboot()
+  end
+  file = fs.open(".NukeOS/.NukeOS_Users","w")
+  file.write()
+  file.writeLine(root)
+  file.writeLine(rootp)
+  if numberOfUsers == "2" then
+   file.writeLine(second)
+   file.writeLine(secondp)
+  else
+   file.writeLine("Empty")
+   file.writeLine("")
+  end
+  file.close()
+ end
+ shell.run(".NukeOS/NukeOS_Login")
+
+ --NukeOS Desktop
+ shell.run(".NukeOS/NukeOS_Desktop")
+
+end
+
+parallel.waitForAny(all,clock)

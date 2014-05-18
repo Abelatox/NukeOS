@@ -1,0 +1,45 @@
+term.write("Do you want the executable as startup? ")
+print("Y/N")
+startup = read()
+if startup == "y" or startup == "Y" then
+ start = "startup"
+ fs.delete("startup")
+elseif startup == "n" or startup == "N" then
+ start = "NukeOS"
+end
+if fs.exists(".NukeOS") then
+ term.clear()
+ term.setCursorPos(1,1)
+ term.setTextColor(colors.red)
+ print("WARNING! You already have NukeOS, do you")
+ print("want to delete it and install it again?")
+ term.setTextColor(colors.white)
+ print("1- Yes")
+ print("2- No")
+ conf = read()
+ if conf == "1" then
+  fs.delete(".NukeOS")
+  fs.delete("NukeOS")
+ elseif conf == "2" then
+  print("Installation canceled")
+  return
+ end
+else
+ fs.makeDir(".NukeOS")
+end
+--EXE Non-Startup
+shell.run("pastebin get ddhks11r "..start)
+--Logo
+shell.run("pastebin get Wbs4eMtm .NukeOS/load")
+--Login Screen
+shell.run("pastebin get K21Msh2m .NukeOS/login")
+--Desktop Background
+shell.run("pastebin get wNu6srnz .NukeOS/bg")
+--NukeChat
+shell.run("pastebin get SyXieXmr .NukeOS/NukeChat")
+--NukeOS Chat Image
+shell.run("pastebin get d1vtpRvr .NukeOS/chatimg")
+--NukeOS_Login
+shell.run("pastebin get EJmKH20u .NukeOS/NukeOS_Login")
+--NukeOS_Desktop
+shell.run("pastebin get Wj4krDeP .NukeOS/NukeOS_Desktop")

@@ -1,0 +1,49 @@
+term.clear()
+term.setCursorPos(1,1)
+function refresh()
+ term.setBackgroundColor(colors.blue)
+ term.setTextColor(colors.white)
+ paintutils.drawLine(1,1,51,1,colors.blue)
+ term.setCursorPos(1,1)
+ print("/"..shell.dir())
+ term.setBackgroundColor(colors.black)
+ for k,v in pairs(fs.list(shell.dir())) do
+  print(v)
+ end
+end
+function select(y)
+ term.setBackgroundColor(colors.black)
+ refresh()
+ term.setCursorPos(1,y)
+ term.clearLine()
+ term.setBackgroundColor(colors.lightGray)
+ term.write(fs.list(shell.dir())[y-1])
+end
+while true do
+ refresh()
+ e,button,x,y = os.pullEvent("mouse_click")
+ if y <= #fs.list(shell.dir()) and y >= 2 then --If you click on any file
+  if y ~= selected then --If you click on a non selected file
+   select(y)
+   selected = y
+  else
+   if fs.isDir(fs.list(shell.dir())[y-1]) then
+    term.clear()
+    term.setCursorPos(1,1)
+    shell.setDir(shell.resolve(fs.list(shell.dir())[y-1]))
+   else 
+    term.clear()
+    term.setCursorPos(1,1)
+    shell.run(fs.list(shell.dir())[y-1])
+   end
+  end
+ else
+  shell.run(shell.dir())
+ end
+ ax,ay = term.getCursorPos()
+-- term.setCursorPos(1,#fs.list(shell.dir())[y+1])
+ term.setCursorPos(1,15)
+ term.clearLine()
+ print("Selected: "..fs.list(shell.dir())[y-1])
+ --term.setCursorPos(ax,ay)
+end

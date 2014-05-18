@@ -1,0 +1,17 @@
+local tArgs = {...}
+if #tArgs > 0 then
+ texto = tArgs[1]
+else
+ texto = "Hola"
+end
+print(texto)
+m = peripheral.wrap("right")
+x, y = m.getSize()
+
+while true do
+ m.setCursorPos(x,1)
+ m.clear()
+ m.write(texto)
+ x = x - 1
+ sleep(0.1)
+end

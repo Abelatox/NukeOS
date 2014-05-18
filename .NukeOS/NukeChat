@@ -1,0 +1,113 @@
+term.clear()
+term.setCursorPos(1,1)
+if pocket then
+mod = "back"
+ print("Which channel would you")
+ term.write("like to join?: ")
+ local channel = read()
+ term.clear()
+ term.setCursorPos(1,1)
+ print("What's your username?")
+ user = read()
+ rednet.open(mod)
+else
+ term.write("Which channel would you like to join?: ")
+ local channel = read() 
+ term.clear()
+ term.setCursorPos(1,1) 
+ term.write("What's your username?: ")
+ user = read() 
+ term.clear()
+ term.setCursorPos(1,1)
+ for a,b in pairs(rs.getSides()) do
+  if peripheral.getType(b) == 'modem' then
+   rednet.open(b)
+  end
+ end 
+end
+local x, y = term.getSize()
+term.clear()
+term.setCursorPos(1,1)
+local timeStamp = textutils.formatTime(os.time(),true)
+function chat()
+  local running = true
+  while running do
+    term.setCursorPos(1, y)
+    local msg = read()
+    if msg == "/clear" then
+     term.clear()
+    elseif msg == "/exit" then
+     term.clear()
+     term.setCursorPos(1,1)
+     print("Stopped successfully!")
+     desktop()
+     running = false
+    elseif msg == "/help" then
+    term.setTextColor(colors.red)
+     print("Available commands:")
+     term.setTextColor(colors.blue)
+     print("/help ")
+     term.setTextColor(colors.green)
+     print("Displays the actual message")
+     print("and it tells you the available commands.")
+     term.setTextColor(colors.blue)
+     print("/clear")
+     term.setTextColor(colors.green)
+     print("Clears the screen.")
+     term.setTextColor(colors.blue)
+     print("/exit")
+     term.setTextColor(colors.green)
+     print("Exits the program.")
+     term.setTextColor(colors.white)
+    else
+     if pocket then
+      term.clearLine(18)
+     else
+      term.clearLine(19)
+     end
+    -- Advanced Computer!!!!!!
+     term.setCursorPos(1,y-1)
+     if term.isColor() then
+      term.setTextColor(colors.yellow)
+      term.write(timeStamp .. "| ")
+      term.setTextColor(colors.blue)
+      term.write(user)
+      term.setTextColor(colors.white)
+      term.write("> "..msg)    
+     else
+      term.write(timeStamp.."| " ..user.."> "..msg)
+     end 
+     info ={
+     username=user,
+     message=msg
+     }
+     sinfo = textutils.serialize(info)
+     --user.."> "..msg
+     rednet.broadcast(sinfo, channel)
+   end
+ end
+end
+function serverListener()
+  while true do
+    local id, msg = rednet.receive(channel,1000)
+    if term.isColor() then
+    actualX, actualY = term.getCursorPos()
+     term.setCursorPos(1,y)
+     tinfo = textutils.unserialize(msg)
+     term.setTextColor(colors.yellow)
+     term.write(timeStamp.."| ")
+     term.setTextColor(colors.lime)
+     term.write(tinfo.username)
+     term.setTextColor(colors.white)
+     term.write("> ")
+    -- term.write(tinfo.message)
+     print(tinfo.message)
+     term.setTextColor(colors.white)   
+     term.setCursorPos(actualX,actualY)
+    else
+     term.write(timeStamp.."| ")
+     textutils.pagedPrint(msg,2)
+    end
+  end
+end
+parallel.waitForAny(chat, serverListener)
