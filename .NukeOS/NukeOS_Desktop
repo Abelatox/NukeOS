@@ -25,7 +25,7 @@ function desktop()
 		term.write("Start")
 		e, button, x, y = os.pullEvent("mouse_click")
 		--Icons
-		if x &gt;= 3 and x &lt;= 5 and y &gt;= 2 and y &lt;= 4 then
+		if x >= 3 and x <= 5 and y >= 2 and y <= 4 then
 			if fs.exists(".NukeOS/NukeChat") then
 				normalColor()
 				isOnDesktop = false
@@ -39,7 +39,7 @@ function desktop()
 				desktop()
 			end
 			--Start Menu
-		elseif x &gt;= 1 and x &lt;= 5 and y == 19 then
+		elseif x >= 1 and x <= 5 and y == 19 then
 			actual=1
 			term.setBackgroundColor(colors.blue)
 			term.setCursorPos(1,13)
@@ -70,7 +70,7 @@ function desktop()
 			term.setTextColor(colors.white)
 			term.setBackgroundColor(colors.black)
 			e, button, x, y = os.pullEvent("mouse_click")
-			if x &gt;= 1 and x &lt;= 10 and y == 18 then --Shutdown
+			if x >= 1 and x <= 10 and y == 18 then --Shutdown
 				isOnDesktop = false
 				actual = 1
 				term.clear()
@@ -80,7 +80,7 @@ function desktop()
 				sleep(0.5) term.write(".")
 				sleep(0.5) term.write(".")
 				os.shutdown()
-			elseif x &gt;= 1 and x &lt;= 10 and y == 17 then --reboot
+			elseif x >= 1 and x <= 10 and y == 17 then --reboot
 				isOnDesktop = false
 				actual = 1
 				term.clear()
@@ -90,12 +90,12 @@ function desktop()
 				sleep(0.5) term.write(".")
 				sleep(0.5) term.write(".")
 				os.reboot()
-   elseif x &gt;= 1 and x &lt;= 10 and y == 16 then --Change user
+   elseif x >= 1 and x <= 10 and y == 16 then --Change user
     isOnDesktop = false
     actual = 1
     term.clear()
     shell.run(".NukeOS/NukeOS_Login")
-			elseif x &gt;= 1 and x &lt;= 10 and y == 15 then --options
+			elseif x >= 1 and x <= 10 and y == 15 then --options
 				actual = 1
 				paintutils.drawImage(bg,1,1)
 				opt = window.create(term.current(),12,4,25,13)
@@ -116,7 +116,7 @@ function desktop()
 				opt.setCursorPos(2,4)
 				opt.write("Change Password")
 				e,button,x,y = os.pullEvent("mouse_click")
-				if x &gt;= 13 and x &lt;= 28 and y == 6 then --usuario
+				if x >= 13 and x <= 28 and y == 6 then --usuario
 					opt.setCursorPos(1,1)
 					opt.clear()
 					opt.write("Write your new username: ")
@@ -169,7 +169,7 @@ function desktop()
 						sleep(1)
 						desktop()
 					end--Deteccion cambio usuario
-				elseif x &gt;= 13 and x &lt;= 28 and y == 7 then --contrase壟F�83壟F�B1a
+				elseif x >= 13 and x <= 28 and y == 7 then --contrase壟F�83壟F�B1a
 					opt.setCursorPos(1,1)
 					opt.clear()
 					opt.write("Write your actual pass: ")
@@ -260,17 +260,17 @@ function desktop()
 							desktop()
 						end
 					end
-				elseif x &gt; 37 or x &lt; 12 and y &gt; 17 or y &lt; 4 then
+				elseif x > 37 or x < 12 and y > 17 or y < 4 then
 					desktop()
 				end--usuario/contrase壟F�83壟F�B1a
 				isOnDesktop = true
-			elseif x &gt;= 1 and x &lt;= 10 and y == 14 then --execute
+			elseif x >= 1 and x <= 10 and y == 14 then --execute
 				isOnDesktop = false
 				term.setBackgroundColor(colors.black)
     term.clear()
     term.setCursorPos(1,1)
   	 shell.run("shell")
-			elseif x &gt; 6 or y &lt; 16 or y == 19 then --Start
+			elseif x > 6 or y < 16 or y == 19 then --Start
 				paintutils.drawImage(bg,1,1)
 				desktop()
 			end--start menu lista
