@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0038)http://pastebin.com/raw.php?i=JQniyUce -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css"></style></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">function clock()
+function clock()
  while true do
   if isOnDesktop == true then
    time = os.time()
@@ -280,4 +278,4 @@ function desktop()
 	end--while escritorio
 	isOnDesktop = false
 end --func
-parallel.waitForAny(desktop,clock)</pre></body></html>
+parallel.waitForAny(desktop,clock)
