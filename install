@@ -27,19 +27,77 @@ if fs.exists(".NukeOS") then
 else
  fs.makeDir(".NukeOS")
 end
---EXE Non-Startup
-shell.run("pastebin get ddhks11r "..start)
---Logo
-shell.run("pastebin get Wbs4eMtm .NukeOS/load")
---Login Screen
-shell.run("pastebin get K21Msh2m .NukeOS/login")
---Desktop Background
-shell.run("pastebin get wNu6srnz .NukeOS/bg")
---NukeChat
-shell.run("pastebin get SyXieXmr .NukeOS/NukeChat")
---NukeOS Chat Image
-shell.run("pastebin get d1vtpRvr .NukeOS/chatimg")
---NukeOS_Login
-shell.run("pastebin get EJmKH20u .NukeOS/NukeOS_Login")
---NukeOS_Desktop
-shell.run("pastebin get Wj4krDeP .NukeOS/NukeOS_Desktop")
+
+local function clear()
+	term.clear()
+	term.setCursorPos(1, 1)
+end
+
+local function get(user, repo, bran, path, save)
+	if not user or not repo or not bran or not path then
+		error("not enough arguments, expected 4 or 5", 2)
+	end
+    local url = "https://raw.github.com/"..user.."/"..repo.."/"..bran.."/"..path
+	local remote = http.get(url)
+	if not remote then
+		return false
+	end
+	local text = remote.readAll()
+	remote.close()
+	if save then
+		local file = fs.open(save, "w")
+		file.write(text)
+		file.close()
+		return true
+	end
+	return text
+end
+
+local function getFile(file, target)
+	return get("Abelatox", "NukeOS", "master", file, target)
+end
+
+shell.setDir("")
+
+clear()
+local files = {
+ ["NukeOS"] = start,
+ [".NukeOS/load"] = ".NukeOS/load",
+ [".NukeOS/login"] = ".NukeOS/login",
+ [".NukeOS/bg"] = ".NukeOS/bg",
+ [".NukeOS/NukeChat"] = ".NukeOS/NukeChat",
+ [".NukeOS/chatimg"] = ".NukeOS/chatimg",
+ [".NukeOS/NukeOS_Login"] = ".NukeOS/NukeOS_Login",
+ [".NukeOS/NukeOS_Desktop"] = ".NukeOS/NukeOS_Desktop",
+}
+
+local fileCount = 0
+for _ in pairs(files) do
+ fileCount = fileCount + 1
+end
+local filesDownloaded = 0
+for k, v in pairs(files) do
+ term.setTextColor(colors.black)
+ term.setBackgroundColor(colors.white)
+ clear()
+ term.setCursorPos(2, 2)
+ print("Installing NukeOS")
+ term.setCursorPos(2, 4)
+ print("File: "..v)
+ local w, h = term.getSize()
+ term.setCursorPos(2, h - 1)
+ print(tostring(math.floor(filesDownloaded / fileCount * 100)).."% - "..tostring(filesDownloaded + 1).."/"..tostring(fileCount))
+ local ok = getFile(k, v)
+ if not ok then
+  if term.isColor() then
+   term.setTextColor(colors.red)
+  end
+  term.setCursorPos(2, 6)
+  print("Error.")
+  sleep(1)
+ end
+ filesDownloaded = filesDownloaded + 1
+end
+term.setTextColor(colors.white)
+term.setBackgroundColor(colors.black)
+clear()
