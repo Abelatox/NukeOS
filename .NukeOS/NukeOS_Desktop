@@ -12,40 +12,40 @@ function clock()
  end
 end
 function desktop()
-	--NukeOS Desktop
-	isOnDesktop = true
-	bg = paintutils.loadImage(".NukeOS/bg")
-	paintutils.drawImage(bg,1,1)
-	chatimg = paintutils.loadImage(".NukeOS/chatimg")
-	paintutils.drawImage(chatimg,3,2)
-	actual = 0
-	while actual == 0 do
-		term.setBackgroundColor(colors.lime)
-		term.setCursorPos(1,19)
-		term.write("Start")
-		e, button, x, y = os.pullEvent("mouse_click")
-		--Icons
-		if x >= 3 and x <= 5 and y >= 2 and y <= 4 then
-			if fs.exists(".NukeOS/NukeChat") then
-				normalColor()
-				isOnDesktop = false
-				shell.run(".NukeOS/NukeChat")
-			else
-				normalColor()
-				term.clear()
-				term.setCursorPos(1,1)
-				print("You don't have the NukeChat")
-				sleep(1)
-				desktop()
-			end
-			--Start Menu
-		elseif x >= 1 and x <= 5 and y == 19 then
-			actual=1
-			term.setBackgroundColor(colors.blue)
-			term.setCursorPos(1,13)
-			term.write("           ")
-			term.setTextColor(colors.red)
-			term.setCursorPos(1,13)
+ --NukeOS Desktop
+ isOnDesktop = true
+ bg = paintutils.loadImage(".NukeOS/bg")
+ paintutils.drawImage(bg,1,1)
+ chatimg = paintutils.loadImage(".NukeOS/chatimg")
+ paintutils.drawImage(chatimg,3,2)
+ actual = 0
+ while actual == 0 do
+  term.setBackgroundColor(colors.lime)
+  term.setCursorPos(1,19)
+  term.write("Start")
+  e, button, x, y = os.pullEvent("mouse_click")
+  --Icons
+  if x >= 3 and x <= 5 and y >= 2 and y <= 4 then
+   if fs.exists(".NukeOS/NukeChat") then
+    normalColor()
+    isOnDesktop = false
+    shell.run(".NukeOS/NukeChat")
+   else
+    normalColor()
+    term.clear()
+    term.setCursorPos(1,1)
+    print("You don't have the NukeChat")
+    sleep(1)
+    desktop()
+   end
+   --Start Menu
+  elseif x >= 1 and x <= 5 and y == 19 then
+   actual=1
+   term.setBackgroundColor(colors.blue)
+   term.setCursorPos(1,13)
+   term.write("           ")
+   term.setTextColor(colors.red)
+   term.setCursorPos(1,13)
    file = fs.open(".NukeOS/.NukeOS_Users","r")
    if actualUser == user1 then
     actualUsr = file.readLine(1)
@@ -53,49 +53,48 @@ function desktop()
     actualUsr = file.readLine(3)
    end
    file.close()
-			term.write(actualUsr)
-			term.setBackgroundColor(colors.white)
-			term.setTextColor(colors.green)
-			term.setCursorPos(1,14)
-			term.write("  Execute  ")
-			term.setCursorPos(1,15)
-			term.write("  Options  ")
+   term.write(actualUsr)
+   term.setBackgroundColor(colors.white)
+   term.setTextColor(colors.green)
+   term.setCursorPos(1,14)
+   term.write("  Execute  ")
+   term.setCursorPos(1,15)
+   term.write("  Options  ")
    term.setCursorPos(1,16)
    term.write("Change User")
-			term.setCursorPos(1,17)
-			term.write("  Restart  ")
-			term.setCursorPos(1,18)
-			term.write("  Shutdown ")
-
-			term.setTextColor(colors.white)
-			term.setBackgroundColor(colors.black)
-			e, button, x, y = os.pullEvent("mouse_click")
-			if x >= 1 and x <= 10 and y == 18 then --Shutdown
-				isOnDesktop = false
-				actual = 1
-				term.clear()
-				term.setCursorPos(1,1)
-				term.write("Shutting down")
-				sleep(0.5) term.write(".")
-				sleep(0.5) term.write(".")
-				sleep(0.5) term.write(".")
-				os.shutdown()
-			elseif x >= 1 and x <= 10 and y == 17 then --reboot
-				isOnDesktop = false
-				actual = 1
-				term.clear()
-				term.setCursorPos(1,1)
-				term.write("Rebooting")
-				sleep(0.5) term.write(".")
-				sleep(0.5) term.write(".")
-				sleep(0.5) term.write(".")
-				os.reboot()
+   term.setCursorPos(1,17)
+   term.write("  Restart  ")
+   term.setCursorPos(1,18)
+   term.write("  Shutdown ")
+   term.setTextColor(colors.white)
+   term.setBackgroundColor(colors.black)
+   e, button, x, y = os.pullEvent("mouse_click")
+   if x >= 1 and x <= 10 and y == 18 then --Shutdown
+    isOnDesktop = false
+    actual = 1
+    term.clear()
+    term.setCursorPos(1,1)
+    term.write("Shutting down")
+    sleep(0.5) term.write(".")
+    sleep(0.5) term.write(".")
+    sleep(0.5) term.write(".")
+    os.shutdown()
+   elseif x >= 1 and x <= 10 and y == 17 then --reboot
+    isOnDesktop = false
+    actual = 1
+    term.clear()
+    term.setCursorPos(1,1)
+    term.write("Rebooting")
+    sleep(0.5) term.write(".")
+    sleep(0.5) term.write(".")
+    sleep(0.5) term.write(".")
+    os.reboot()
    elseif x >= 1 and x <= 10 and y == 16 then --Change user
     isOnDesktop = false
     actual = 1
     term.clear()
     shell.run(".NukeOS/NukeOS_Login")
-			elseif x >= 1 and x <= 10 and y == 15 then --options
+   elseif x >= 1 and x <= 10 and y == 15 then --options
 				actual = 1
 				paintutils.drawImage(bg,1,1)
 				opt = window.create(term.current(),12,4,25,13)
