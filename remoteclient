@@ -1,0 +1,63 @@
+rednet.open("back")
+function receive()
+	while true do
+		id, msg = rednet.receive()
+		curx,cury = term.getCursorPos()
+		maxx,maxy = term.getSize()
+		term.setCursorPos(maxx - tostring(msg):len() + 1,1)
+		term.clearLine()
+		print(msg)
+		term.setCursorPos(curx,cury)
+	end
+end
+function send()
+	turtleId = 51
+	while true do
+		e, key = os.pullEvent()
+		if e == "mouse_click" then
+			if key == 1 then
+				print("LeftClick")
+				sendClick()
+			elseif key == 2 then
+				print("RightClick")
+				sendClick()
+			elseif key == 3 then
+				print("MiddleClick")
+				sendClick()
+			end
+		elseif e == "key" then
+			if key == 17 then
+				print("Forward")
+				sendKey()
+			elseif key == 30 then
+				print("Left")
+				sendKey()
+			elseif key == 31 then
+				print("Back")
+				sendKey()
+			elseif key == 32 then
+				print ("Right")
+				sendKey()
+			elseif key == 57 then
+				print ("Up")
+				sendKey()
+			elseif key == 42 then
+				print("Down")
+				sendKey()
+			elseif key == 203 then
+				print("PriorSlot")
+				sendKey()
+			elseif key == 205 then
+				print("FollowingSlot")
+				sendKey()
+			end
+		end
+	end
+end
+function sendClick()
+	rednet.send(turtleId,"C"..key)
+end
+function sendKey()
+	rednet.send(turtleId,key)
+end
+parallel.waitForAny(send,receive)
