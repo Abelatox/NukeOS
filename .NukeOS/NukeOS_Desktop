@@ -95,33 +95,35 @@ function desktop()
     term.clear()
     shell.run(".NukeOS/NukeOS_Login")
    elseif x >= 1 and x <= 10 and y == 15 then --options
-				actual = 1
-				paintutils.drawImage(bg,1,1)
-				opt = window.create(term.current(),12,4,25,13)
-				opt.setBackgroundColor(colors.lightGray)
-				opt.clear()
-				for i=1,24 do
-					opt.setCursorPos(i,1)
-					opt.setBackgroundColor(colors.blue)
-					opt.write(" ")
-				end
-				isOnDesktop = false
-				opt.setBackgroundColor(colors.red)
-				opt.setCursorPos(25,1)
-				opt.write("X")
-				opt.setBackgroundColor(colors.lightGray)
-				opt.setCursorPos(2,3)
-				opt.write("Change Username")
-				opt.setCursorPos(2,4)
-				opt.write("Change Password")
-				e,button,x,y = os.pullEvent("mouse_click")
-				if x >= 13 and x <= 28 and y == 6 then --usuario
-					opt.setCursorPos(1,1)
-					opt.clear()
-					opt.write("Write your new username: ")
-					if actualUser == user1 then
-						opt.setCursorPos(1,2)
-						newuser1 = read()
+    actual = 1
+    paintutils.drawImage(bg,1,1)
+    opt = window.create(term.current(),12,4,25,13)
+    opt.setBackgroundColor(colors.lightGray)
+    opt.clear()
+    for i=1,24 do
+     opt.setCursorPos(i,1)
+     opt.setBackgroundColor(colors.blue)
+     opt.write(" ")
+    end
+    isOnDesktop = false
+    opt.setBackgroundColor(colors.red)
+    opt.setCursorPos(25,1)
+    opt.write("X")
+    opt.setBackgroundColor(colors.lightGray)
+    opt.setCursorPos(2,3)
+    opt.write("Change Username")
+    opt.setCursorPos(2,4)
+    opt.write("Change Password")
+    e,button,x,y = os.pullEvent("mouse_click")
+    if y ~= 6 or y ~=7 then
+     shell.run(".NukeOS/NukeOS_Desktop")
+    elseif x >= 13 and x <= 28 and y == 6 then --usuario
+     opt.setCursorPos(1,1)
+     opt.clear()
+     opt.write("Write your new username: ")
+     if actualUser == user1 then
+      opt.setCursorPos(1,2)
+      newuser1 = read()
 						usersfile = fs.open(".NukeOS/.NukeOS_Users","r")
 						line1 = usersfile.readLine(1)
 						line2 = usersfile.readLine(2)
@@ -168,8 +170,8 @@ function desktop()
 						sleep(1)
 						desktop()
 					end--Deteccion cambio usuario
-				elseif x >= 13 and x <= 28 and y == 7 then --contrase壟F�83壟F�B1a
-					opt.setCursorPos(1,1)
+				elseif x >= 13 and x <= 28 and y == 7 then --password
+				 opt.setCursorPos(1,1)
 					opt.clear()
 					opt.write("Write your actual pass: ")
 					--Pass user1
