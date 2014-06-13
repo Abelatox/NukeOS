@@ -120,11 +120,15 @@ function desktop()
     elseif x >= 13 and x <= 28 and y == 6 then --usuario
      opt.clear()
      for i=1,24 do
-     opt.setCursorPos(i,1)
-     opt.setBackgroundColor(colors.blue)
-     opt.write(" ")
-    end
-     opt.setCursorPos(1,2)
+      opt.setCursorPos(i,1)
+      opt.setBackgroundColor(colors.blue)
+      opt.write(" ")
+     end
+     opt.setBackgroundColor(colors.red)
+     opt.setCursorPos(25,1)
+     opt.write("X")
+     opt.setBackgroundColor(colors.lightGray)
+     opt.setCursorPos(2,3)
      opt.write("Write your new username: ")
      if actualUser == user1 then
       opt.setCursorPos(1,2)
