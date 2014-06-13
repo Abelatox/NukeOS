@@ -115,11 +115,16 @@ function desktop()
     opt.setCursorPos(2,4)
     opt.write("Change Password")
     e,button,x,y = os.pullEvent("mouse_click")
-    if y ~= 6 or y ~=7 then
+    if y ~= 6 and y ~=7 then
      shell.run(".NukeOS/NukeOS_Desktop")
     elseif x >= 13 and x <= 28 and y == 6 then --usuario
-     opt.setCursorPos(1,1)
      opt.clear()
+     for i=1,24 do
+     opt.setCursorPos(i,1)
+     opt.setBackgroundColor(colors.blue)
+     opt.write(" ")
+    end
+     opt.setCursorPos(1,2)
      opt.write("Write your new username: ")
      if actualUser == user1 then
       opt.setCursorPos(1,2)
