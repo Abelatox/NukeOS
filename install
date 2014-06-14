@@ -1,13 +1,23 @@
-term.write("Do you want the executable as startup? ")
-print("Y/N")
-startup = read()
-if startup == "y" or startup == "Y" then
- start = "startup"
- fs.delete("startup")
-elseif startup == "n" or startup == "N" then
+term.write("Do you want to make it compatible with NukeLoader? ")
+compatible = read()
+if compatible == "Yes" or compatible == "yes" or compatible == "y" or compatible == "Y" then
+ hasToBeCompatible == true
+ root = "/os/"
  start = "NukeOS"
+elseif compatible == "No" or compatible == "no" or compatible == "n" or compatible == "N" then
+ hasToBeCompatible == false
+ root = "/"
+ term.write("Do you want the executable as startup? ")
+ print("Y/N")
+ startup = read()
+ if startup == "y" or startup == "Y" then
+  start = "startup"
+  fs.delete("startup")
+ elseif startup == "n" or startup == "N" then
+  start = "NukeOS"
+ end
 end
-if fs.exists(".NukeOS") then
+if fs.exists(root..".NukeOS") then
  term.clear()
  term.setCursorPos(1,1)
  term.setTextColor(colors.red)
@@ -18,14 +28,14 @@ if fs.exists(".NukeOS") then
  print("2- No")
  conf = read()
  if conf == "1" then
-  fs.delete(".NukeOS")
-  fs.delete("NukeOS")
+  fs.delete(root..".NukeOS")
+  fs.delete(root.."NukeOS")
  elseif conf == "2" then
   print("Installation canceled")
   return
  end
 else
- fs.makeDir(".NukeOS")
+ fs.makeDir(root..".NukeOS")
 end
 
 local function clear()
@@ -61,14 +71,14 @@ shell.setDir("")
 
 clear()
 local files = {
- ["NukeOS"] = start,
- [".NukeOS/load"] = ".NukeOS/load",
- [".NukeOS/login"] = ".NukeOS/login",
- [".NukeOS/bg"] = ".NukeOS/bg",
- [".NukeOS/NukeChat"] = ".NukeOS/NukeChat",
- [".NukeOS/chatimg"] = ".NukeOS/chatimg",
- [".NukeOS/NukeOS_Login"] = ".NukeOS/NukeOS_Login",
- [".NukeOS/NukeOS_Desktop"] = ".NukeOS/NukeOS_Desktop",
+ ["NukeOS"] = root..start,
+ [".NukeOS/load"] = root..".NukeOS/load",
+ [".NukeOS/login"] = root..".NukeOS/login",
+ [".NukeOS/bg"] = root..".NukeOS/bg",
+ [".NukeOS/NukeChat"] = root..".NukeOS/NukeChat",
+ [".NukeOS/chatimg"] = root..".NukeOS/chatimg",
+ [".NukeOS/NukeOS_Login"] = root..".NukeOS/NukeOS_Login",
+ [".NukeOS/NukeOS_Desktop"] = root..".NukeOS/NukeOS_Desktop",
 }
 
 local fileCount = 0
