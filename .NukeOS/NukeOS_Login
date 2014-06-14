@@ -1,6 +1,6 @@
 --Login
 function login1()
- login = paintutils.loadImage(".NukeOS/login")
+ login = paintutils.loadImage(root..".NukeOS/login")
  paintutils.drawImage(login,1,1)
  for i= 3, 16 do
  term.setBackgroundColor(colors.lightBlue)
@@ -8,7 +8,7 @@ function login1()
   print("|")
  end
  
- file = fs.open(".NukeOS/.NukeOS_Users", "r")
+ file = fs.open(root..".NukeOS/.NukeOS_Users", "r")
  user1 = file.readLine(1)
  p1 = file.readLine(2)
  user2 = file.readLine(3)
@@ -28,10 +28,10 @@ function login1()
  term.setBackgroundColor(colors.white)
  term.setTextColor(colors.black)
  term.write("            ")
-
+ 
  --User2
  term.setBackgroundColor(colors.lightGray)
- term.setCursorPos(17,8) 
+ term.setCursorPos(17,8)
  term.setTextColor(colors.white)
  term.write("2   ")
  term.setBackgroundColor(colors.lightBlue)
@@ -54,18 +54,18 @@ function welcome()
  term.clear()
   welcome = [[
 \             / |------ |      
-	  \     ^     /  |       |
-	   \   / \   /   |---    |
-	    \ /   \ /    |       |
-	     V     V     |------ |-----                            
-					|------ /------\     ^   ^     |------
-					|       |      |    / \ / \    |
-					|       |      |   /   V   \   |---
-					|       |      |  /         \  |
-					|------ \______/ /           \ |------]]
+          \     ^     /  |       |
+           \   / \   /   |---    |
+            \ /   \ /    |       |
+             V     V     |------ |-----                            
+                                        |------ /------\     ^   ^     |------
+                                        |       |      |    / \ / \    |
+                                        |       |      |   /   V   \   |---
+                                        |       |      |  /         \  |
+                                        |------ \______/ /           \ |------]]
  print(welcome)
  sleep(3)
- shell.run(".NukeOS/NukeOS_Desktop")
+ shell.run(root..".NukeOS/NukeOS_Desktop")
  end
 function sorry()
  term.setTextColor(colors.white)
@@ -101,6 +101,6 @@ function login2()
  end
 end
 login1()
-
+ 
 login2()
-shell.run(".NukeOS/NukeOS_Login")
+shell.run(root..".NukeOS/NukeOS_Login")
