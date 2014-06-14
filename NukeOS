@@ -61,7 +61,7 @@ function all()
  
  boot()
  --Login
- if not fs.exists(".NukeOS/.NukeOS_Users") then
+ if not fs.exists(root..".NukeOS/.NukeOS_Users") then
   term.setCursorPos(1,1)
   term.setBackgroundColor(colors.black)
   term.clear()
@@ -86,7 +86,7 @@ function all()
   print("Number should be 1 or 2")
   os.reboot()
   end
-  file = fs.open(".NukeOS/.NukeOS_Users","w")
+  file = fs.open(root..".NukeOS/.NukeOS_Users","w")
   file.write()
   file.writeLine(root)
   file.writeLine(rootp)
