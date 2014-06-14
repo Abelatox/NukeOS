@@ -1,11 +1,11 @@
 term.write("Do you want to make it compatible with NukeLoader? ")
 compatible = read()
 if compatible == "Yes" or compatible == "yes" or compatible == "y" or compatible == "Y" then
- hasToBeCompatible == true
+ hasToBeCompatible = true
  root = "/os/"
  start = "NukeOS"
 elseif compatible == "No" or compatible == "no" or compatible == "n" or compatible == "N" then
- hasToBeCompatible == false
+ hasToBeCompatible = false
  root = "/"
  term.write("Do you want the executable as startup? ")
  print("Y/N")
