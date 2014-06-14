@@ -16,7 +16,7 @@ function desktop()
  isOnDesktop = true
  bg = paintutils.loadImage(".NukeOS/bg")
  paintutils.drawImage(bg,1,1)
- paintutils.drawLine(49,1,51,1,colors.lightblue)
+ paintutils.drawLine(49,1,51,1,colors.lightBlue)
  chatimg = paintutils.loadImage(".NukeOS/chatimg")
  paintutils.drawImage(chatimg,3,2)
  actual = 0
