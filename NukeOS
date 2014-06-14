@@ -99,10 +99,10 @@ function all()
   end
   file.close()
  end
- shell.run(".NukeOS/NukeOS_Login")
+ shell.run(root..".NukeOS/NukeOS_Login")
 
  --NukeOS Desktop
- shell.run(".NukeOS/NukeOS_Desktop")
+ shell.run(root..".NukeOS/NukeOS_Desktop")
 
 end
 
