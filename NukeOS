@@ -18,11 +18,11 @@ function clock()
    term.setBackgroundColor(colors.cyan)
    term.setTextColor(colors.white)
    write(time)
-  end 
+  end
   sleep(1)
  end
 end
-
+ 
 function all()
  function boot()
   --NukeOS Boot
@@ -70,26 +70,26 @@ function all()
   numberOfUsers = read()
   if numberOfUsers == "1" then
    print("Choose your username:")
-   root = read()
+   first = read()
    print("Now choose your password:")
-   rootp = read("*")
+   firstp = read("*")
   elseif numberOfUsers == "2" then  
    print("Choose your username:")
-   root = read()
+   first = read()
    print("Now choose your password:")
-   rootp = read("*")
+   firstp = read("*")
    print("Choose your second user's username:")
    second = read()
    print("Choose your second user's password:")
-   secondp = read("*")   
+   secondp = read("*")  
   else
   print("Number should be 1 or 2")
   os.reboot()
   end
   file = fs.open(root..".NukeOS/.NukeOS_Users","w")
   file.write()
-  file.writeLine(root)
-  file.writeLine(rootp)
+  file.writeLine(first)
+  file.writeLine(firstp)
   if numberOfUsers == "2" then
    file.writeLine(second)
    file.writeLine(secondp)
@@ -100,10 +100,10 @@ function all()
   file.close()
  end
  shell.run(root..".NukeOS/NukeOS_Login")
-
+ 
  --NukeOS Desktop
  shell.run(root..".NukeOS/NukeOS_Desktop")
-
+ 
 end
-
+ 
 parallel.waitForAny(all,clock)
