@@ -1,3 +1,8 @@
+if BootLoader == true then
+ root = "/os/"
+else
+ root = "/"
+end
 term.clear()
 function normalColor()
  term.setTextColor(colors.white)
