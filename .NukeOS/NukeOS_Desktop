@@ -7,17 +7,17 @@ function clock()
    term.setBackgroundColor(colors.cyan)
    term.setTextColor(colors.white)
    write(time)
-  end 
+  end
   sleep(1)
  end
 end
 function desktop()
  --NukeOS Desktop
  isOnDesktop = true
- bg = paintutils.loadImage(".NukeOS/bg")
+ bg = paintutils.loadImage(root..".NukeOS/bg")
  paintutils.drawImage(bg,1,1)
  paintutils.drawLine(49,1,51,1,colors.lightBlue)
- chatimg = paintutils.loadImage(".NukeOS/chatimg")
+ chatimg = paintutils.loadImage(root..".NukeOS/chatimg")
  paintutils.drawImage(chatimg,3,2)
  actual = 0
  while actual == 0 do
@@ -27,15 +27,15 @@ function desktop()
   e, button, x, y = os.pullEvent("mouse_click")
   --Icons
   if x >= 3 and x <= 5 and y >= 2 and y <= 4 then
-   if fs.exists(".NukeOS/NukeChat") then
+   if fs.exists(root..".NukeOS/NukeChat") then
     normalColor()
     isOnDesktop = false
-    shell.run(".NukeOS/NukeChat")
+    shell.run(root..".NukeOS/NukeChat")
    else
     normalColor()
     term.clear()
     term.setCursorPos(1,1)
-    print("You don't have the NukeChat")
+    print("You don't have NukeChat")
     sleep(1)
     desktop()
    end
@@ -47,7 +47,7 @@ function desktop()
    term.write("           ")
    term.setTextColor(colors.red)
    term.setCursorPos(1,13)
-   file = fs.open(".NukeOS/.NukeOS_Users","r")
+   file = fs.open(root..".NukeOS/.NukeOS_Users","r")
    if actualUser == user1 then
     actualUsr = file.readLine(1)
    elseif actualUser == user2 then
@@ -58,7 +58,7 @@ function desktop()
    term.setBackgroundColor(colors.white)
    term.setTextColor(colors.green)
    term.setCursorPos(1,14)
-   term.write("  Execute  ")
+   term.write("  Console  ")
    term.setCursorPos(1,15)
    term.write("  Options  ")
    term.setCursorPos(1,16)
@@ -94,7 +94,7 @@ function desktop()
     isOnDesktop = false
     actual = 1
     term.clear()
-    shell.run(".NukeOS/NukeOS_Login")
+    shell.run(root..".NukeOS/NukeOS_Login")
    elseif x >= 1 and x <= 10 and y == 15 then --options
     actual = 1
     paintutils.drawImage(bg,1,1)
@@ -117,7 +117,7 @@ function desktop()
     opt.write("Change Password")
     e,button,x,y = os.pullEvent("mouse_click")
     if y ~= 6 and y ~=7 then
-     shell.run(".NukeOS/NukeOS_Desktop")
+     shell.run(root..".NukeOS/NukeOS_Desktop")
     elseif x >= 13 and x <= 28 and y == 6 then --usuario
      opt.clear()
      for i=1,24 do
@@ -134,159 +134,159 @@ function desktop()
      if actualUser == user1 then
       opt.setCursorPos(2,3)
       newuser1 = read()
-	usersfile = fs.open(".NukeOS/.NukeOS_Users","r")
-	line1 = usersfile.readLine(1)
-	line2 = usersfile.readLine(2)
-	line3 = usersfile.readLine(3)
-	line4 = usersfile.readLine(4)
-	usersfile.close()
-	usersfilew = fs.open(".NukeOS/.NukeOS_Users","w")
-	usersfilew.write()
-	usersfilew.writeLine(newuser1)
-	usersfilew.writeLine(line2)
-	usersfilew.writeLine(line3)
-	usersfilew.writeLine(line4)
-	usersfilew.close()
-	opt.setCursorPos(1,7)
-	opt.setTextColor(colors.red)
-	opt.write("Username Changed Successfully")
-	opt.setTextColor(colors.white)
-	desktop()
-	elseif actualUser == user2 then
-	opt.setCursorPos(2,3)	
-	newuser2 = read()
-	usersfile = fs.open(".NukeOS/.NukeOS_Users","r")
-	line1 = usersfile.readLine(1)
-	line2 = usersfile.readLine(2)
-	line3 = usersfile.readLine(3)
-	line4 = usersfile.readLine(4)
-	usersfile.close()
-	usersfilew = fs.open(".NukeOS/.NukeOS_Users","w")
-	usersfilew.write()
-	usersfilew.writeLine(line1)
-					usersfilew.writeLine(line2)
-						usersfilew.writeLine(newuser2)
-						usersfilew.writeLine(line4)
-						opt.setCursorPos(1,7)
-						opt.setTextColor(colors.red)
-						opt.write("Username Changed Successfully")
-						opt.setTextColor(colors.white)
-						usersfilew.close()
-						desktop()
-					else
-						opt.write("You can only change")
-						opt.setCursorPos(1,3)
-						opt.write("username while logged in")
-						sleep(1)
-						desktop()
-					end--Deteccion cambio usuario
-				elseif x >= 13 and x <= 28 and y == 7 then --password
-				 opt.setCursorPos(1,1)
-					opt.clear()
-					opt.write("Write your actual pass: ")
-					--Pass user1
-					if actualUser == user1 then
-						usersfile = fs.open(".NukeOS/.NukeOS_Users","r")
-						line1 = usersfile.readLine(1)
-						line2 = usersfile.readLine(2)
-						line3 = usersfile.readLine(3)
-						line4 = usersfile.readLine(4)
-						usersfile.close()
-						opt.setCursorPos(1,2)
-						actualPass = read("*")
-						if actualPass == line2 then
-							opt.setCursorPos(1,3)
-							opt.write("Type the new password:")
-							opt.setCursorPos(1,4)
-							newpass = read("*")
-							opt.setCursorPos(1,5)
-							opt.write("Repeat the new password:")
-							opt.setCursorPos(1,5)
-							newpass2 = read("*")
-							if newpass == newpass2 then
-								usersfilew = fs.open(".NukeOS/.NukeOS_Users","w")
-								usersfilew.write()
-								usersfilew.writeLine(line1)
-								usersfilew.writeLine(newpass)
-								usersfilew.writeLine(line3)
-								usersfilew.writeLine(line4)
-								opt.setCursorPos(1,7)
-								opt.setTextColor(colors.red)
-								opt.write("Password Changed Successfully")
-								opt.setTextColor(colors.white)
-								usersfilew.close()
-								desktop()
-							else 
-								opt.setCursorPos(1,6)
-								opt.write("New pass is incorrect")
-								sleep(1)
-								desktop()
-							end
-						else
-							opt.write("Wrong password")
-							sleep(1)
-							desktop()
-						end
-					--pass user2
-					elseif actualUser == user2 then
-						usersfile = fs.open(".NukeOS/.NukeOS_Users","r")
-						line1 = usersfile.readLine(1)
-						line2 = usersfile.readLine(2)
-						line3 = usersfile.readLine(3)
-						line4 = usersfile.readLine(4)
-						usersfile.close()
-						opt.setCursorPos(1,2)
-						actualPass = read()
-						if actualPass == line4 then
-							opt.setCursorPos(1,3)
-							opt.write("Type the new password:")
-							opt.setCursorPos(1,4)
-							newpass = read()
-							opt.setCursorPos(1,5)
-							opt.write("Repeat the new password:")
-							opt.setCursorPos(1,6)
-							newpass2 = read()
-							if newpass == newpass2 then
-								usersfilew = fs.open(".NukeOS/.NukeOS_Users","w")
-								usersfilew.write()
-								usersfilew.writeLine(line1)
-								usersfilew.writeLine(line2)
-								usersfilew.writeLine(line3)
-								usersfilew.writeLine(newpass)
-								usersfilew.close()
-								opt.setCursorPos(1,7)
-								opt.setTextColor(colors.red)
-								opt.write("Password Changed Successfully")
-								opt.setTextColor(colors.white)
-								desktop()
-							else 
-								opt.setCursorPos(1,6)
-								opt.write("New pass is incorrect")
-								sleep(1)
-								desktop()
-							end
-						else
-							opt.write("Wrong password")
-							sleep(1)
-							desktop()
-						end
-					end
-				elseif x > 37 or x < 12 and y > 17 or y < 4 then
-					desktop()
-				end--usuario/contrase壟F�83壟F�B1a
-				isOnDesktop = true
-			elseif x >= 1 and x <= 10 and y == 14 then --execute
-				isOnDesktop = false
-				term.setBackgroundColor(colors.black)
+                                                usersfile = fs.open(root..".NukeOS/.NukeOS_Users","r")
+                                                line1 = usersfile.readLine(1)
+                                                line2 = usersfile.readLine(2)
+                                                line3 = usersfile.readLine(3)
+                                                line4 = usersfile.readLine(4)
+                                                usersfile.close()
+                                                usersfilew = fs.open(root..".NukeOS/.NukeOS_Users","w")
+                                                usersfilew.write()
+                                                usersfilew.writeLine(newuser1)
+                                                usersfilew.writeLine(line2)
+                                                usersfilew.writeLine(line3)
+                                                usersfilew.writeLine(line4)
+                                                usersfilew.close()
+                                                opt.setCursorPos(1,7)
+                                                opt.setTextColor(colors.red)
+                                                opt.write("Username Changed Successfully")
+                                                opt.setTextColor(colors.white)
+                                                desktop()
+                                        elseif actualUser == user2 then
+                                                opt.setCursorPos(1,2)
+                                                newuser2 = read()
+                                                usersfile = fs.open(root..".NukeOS/.NukeOS_Users","r")
+                                                line1 = usersfile.readLine(1)
+                                                line2 = usersfile.readLine(2)
+                                                line3 = usersfile.readLine(3)
+                                                line4 = usersfile.readLine(4)
+                                                usersfile.close()
+                                                usersfilew = fs.open(root..".NukeOS/.NukeOS_Users","w")
+                                                usersfilew.write()
+                                                usersfilew.writeLine(line1)
+                                                usersfilew.writeLine(line2)
+                                                usersfilew.writeLine(newuser2)
+                                                usersfilew.writeLine(line4)
+                                                opt.setCursorPos(1,7)
+                                                opt.setTextColor(colors.red)
+                                                opt.write("Username Changed Successfully")
+                                                opt.setTextColor(colors.white)
+                                                usersfilew.close()
+                                                desktop()
+                                        else
+                                                opt.write("You can only change")
+                                                opt.setCursorPos(1,3)
+                                                opt.write("username while logged in")
+                                                sleep(1)
+                                                desktop()
+                                        end--Deteccion cambio usuario
+                                elseif x >= 13 and x <= 28 and y == 7 then --password
+                                 opt.setCursorPos(1,1)
+                                        opt.clear()
+                                        opt.write("Write your actual pass: ")
+                                        --Pass user1
+                                        if actualUser == user1 then
+                                                usersfile = fs.open(root..".NukeOS/.NukeOS_Users","r")
+                                                line1 = usersfile.readLine(1)
+                                                line2 = usersfile.readLine(2)
+                                                line3 = usersfile.readLine(3)
+                                                line4 = usersfile.readLine(4)
+                                                usersfile.close()
+                                                opt.setCursorPos(1,2)
+                                                actualPass = read()
+                                                if actualPass == line2 then
+                                                        opt.setCursorPos(1,3)
+                                                        opt.write("Type the new password:")
+                                                        opt.setCursorPos(1,4)
+                                                        newpass = read()
+                                                        opt.setCursorPos(1,5)
+                                                        opt.write("Repeat the new password:")
+                                                        opt.setCursorPos(1,5)
+                                                        newpass2 = read()
+                                                        if newpass == newpass2 then
+                                                                usersfilew = fs.open(root..".NukeOS/.NukeOS_Users","w")
+                                                                usersfilew.write()
+                                                                usersfilew.writeLine(line1)
+                                                                usersfilew.writeLine(newpass)
+                                                                usersfilew.writeLine(line3)
+                                                                usersfilew.writeLine(line4)
+                                                                opt.setCursorPos(1,7)
+                                                                opt.setTextColor(colors.red)
+                                                                opt.write("Password Changed Successfully")
+                                                                opt.setTextColor(colors.white)
+                                                                usersfilew.close()
+                                                                desktop()
+                                                        else
+                                                                opt.setCursorPos(1,6)
+                                                                opt.write("New pass is incorrect")
+                                                                sleep(1)
+                                                                desktop()
+                                                        end
+                                                else
+                                                        opt.write("Wrong password")
+                                                        sleep(1)
+                                                        desktop()
+                                                end
+                                        --pass user2
+                                        elseif actualUser == user2 then
+                                                usersfile = fs.open(root..".NukeOS/.NukeOS_Users","r")
+                                                line1 = usersfile.readLine(1)
+                                                line2 = usersfile.readLine(2)
+                                                line3 = usersfile.readLine(3)
+                                                line4 = usersfile.readLine(4)
+                                                usersfile.close()
+                                                opt.setCursorPos(1,2)
+                                                actualPass = read()
+                                                if actualPass == line4 then
+                                                        opt.setCursorPos(1,3)
+                                                        opt.write("Type the new password:")
+                                                        opt.setCursorPos(1,4)
+                                                        newpass = read()
+                                                        opt.setCursorPos(1,5)
+                                                        opt.write("Repeat the new password:")
+                                                        opt.setCursorPos(1,6)
+                                                        newpass2 = read()
+                                                        if newpass == newpass2 then
+                                                                usersfilew = fs.open(root..".NukeOS/.NukeOS_Users","w")
+                                                                usersfilew.write()
+                                                                usersfilew.writeLine(line1)
+                                                                usersfilew.writeLine(line2)
+                                                                usersfilew.writeLine(line3)
+                                                                usersfilew.writeLine(newpass)
+                                                                usersfilew.close()
+                                                                opt.setCursorPos(1,7)
+                                                                opt.setTextColor(colors.red)
+                                                                opt.write("Password Changed Successfully")
+                                                                opt.setTextColor(colors.white)
+                                                                desktop()
+                                                        else
+                                                                opt.setCursorPos(1,6)
+                                                                opt.write("New pass is incorrect")
+                                                                sleep(1)
+                                                                desktop()
+                                                        end
+                                                else
+                                                        opt.write("Wrong password")
+                                                        sleep(1)
+                                                        desktop()
+                                                end
+                                        end
+                                elseif x > 37 or x < 12 and y > 17 or y < 4 then
+                                        desktop()
+                                end--usuario/contrase�A5�A3?B8F�AF�BF�BD83�A5�A3?B8F�AF�BF�BDB1a
+                                isOnDesktop = true
+                        elseif x >= 1 and x <= 10 and y == 14 then --execute
+                                isOnDesktop = false
+                                term.setBackgroundColor(colors.black)
     term.clear()
     term.setCursorPos(1,1)
-  	 shell.run("shell")
-			elseif x > 6 or y < 16 or y == 19 then --Start
-				paintutils.drawImage(bg,1,1)
-				desktop()
-			end--start menu lista
-		end--inicio / iconos escritorio
-	end--while escritorio
-	isOnDesktop = false
+         shell.run("shell")
+                        elseif x > 6 or y < 16 or y == 19 then --Start
+                                paintutils.drawImage(bg,1,1)
+                                desktop()
+                        end--start menu lista
+                end--inicio / iconos escritorio
+        end--while escritorio
+        isOnDesktop = false
 end --func
 parallel.waitForAny(desktop,clock)
