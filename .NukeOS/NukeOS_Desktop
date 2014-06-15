@@ -14,10 +14,10 @@ end
 function desktop()
  --NukeOS Desktop
  isOnDesktop = true
- bg = paintutils.loadImage(root..".NukeOS/bg")
+ bg = paintutils.loadImage(root..".NukeOS/textures/bg")
  paintutils.drawImage(bg,1,1)
  paintutils.drawLine(49,1,51,1,colors.lightBlue)
- chatimg = paintutils.loadImage(root..".NukeOS/chatimg")
+ chatimg = paintutils.loadImage(root..".NukeOS/textures/chatimg")
  paintutils.drawImage(chatimg,3,2)
  actual = 0
  while actual == 0 do
