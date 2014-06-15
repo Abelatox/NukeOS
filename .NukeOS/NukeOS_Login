@@ -1,6 +1,6 @@
 --Login
 function login1()
- login = paintutils.loadImage(root..".NukeOS/login")
+ login = paintutils.loadImage(root..".NukeOS/textures/login")
  paintutils.drawImage(login,1,1)
  for i= 3, 16 do
  term.setBackgroundColor(colors.lightBlue)
