@@ -36,6 +36,7 @@ if fs.exists(root..".NukeOS") then
  end
 else
  fs.makeDir(root..".NukeOS")
+ fs.makeDir(root..".NukeOS/textures")
 end
 
 local function clear()
@@ -72,11 +73,11 @@ shell.setDir("")
 clear()
 local files = {
  ["NukeOS"] = root..start,
- [".NukeOS/load"] = root..".NukeOS/load",
- [".NukeOS/login"] = root..".NukeOS/login",
- [".NukeOS/bg"] = root..".NukeOS/bg",
+ [".NukeOS/load"] = root..".NukeOS/textures/load",
+ [".NukeOS/login"] = root..".NukeOS/textures/login",
+ [".NukeOS/bg"] = root..".NukeOS/textures/bg",
  [".NukeOS/NukeChat"] = root..".NukeOS/NukeChat",
- [".NukeOS/chatimg"] = root..".NukeOS/chatimg",
+ [".NukeOS/chatimg"] = root..".NukeOS/textures/chatimg",
  [".NukeOS/NukeOS_Login"] = root..".NukeOS/NukeOS_Login",
  [".NukeOS/NukeOS_Desktop"] = root..".NukeOS/NukeOS_Desktop",
 }
