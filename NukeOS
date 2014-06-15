@@ -26,7 +26,7 @@ end
 function all()
  function boot()
   --NukeOS Boot
-  li = paintutils.loadImage(root..".NukeOS/load")
+  li = paintutils.loadImage(root..".NukeOS/textures/load")
   paintutils.drawImage(li,1,1)
   NukeOS = [[
 |\    | |       | |   / |-----    /-----\  --------
