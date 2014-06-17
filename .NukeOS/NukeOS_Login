@@ -29,21 +29,23 @@ function login1()
  term.setTextColor(colors.black)
  term.write("            ")
  
- --User2
- term.setBackgroundColor(colors.lightGray)
- term.setCursorPos(17,8)
- term.setTextColor(colors.white)
- term.write("2   ")
- term.setBackgroundColor(colors.lightBlue)
- term.write(" " ..user2)
- term.setBackgroundColor(colors.lightGray)
- term.setCursorPos(17,9)
- term.write("    ")
- term.setBackgroundColor(colors.lightBlue)
- term.write(" ")
- term.setBackgroundColor(colors.white)
- term.setTextColor(colors.black)
- term.write("            ")
+ if numberOfUsers == 2 then
+  --User2
+  term.setBackgroundColor(colors.lightGray)
+  term.setCursorPos(17,8)
+  term.setTextColor(colors.white)
+  term.write("2   ")
+  term.setBackgroundColor(colors.lightBlue)
+  term.write(" " ..user2)
+  term.setBackgroundColor(colors.lightGray)
+  term.setCursorPos(17,9)
+  term.write("    ")
+  term.setBackgroundColor(colors.lightBlue)
+  term.write(" ")
+  term.setBackgroundColor(colors.white)
+  term.setTextColor(colors.black)
+  term.write("            ")
+ end
 end
  
 --Welcome
