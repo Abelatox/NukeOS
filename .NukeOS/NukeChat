@@ -41,7 +41,11 @@ function chat()
      term.setCursorPos(1,1)
      print("Stopped successfully!")
      running = false
-     desktop()
+     if comeFromDesktop then
+      desktop()
+     else
+      break
+     end
     elseif msg == "/help" then
     term.setTextColor(colors.red)
      print("Available commands:")
@@ -82,14 +86,16 @@ function chat()
      message=msg
      }
      sinfo = textutils.serialize(info)
-     --user.."> "..msg
-     rednet.broadcast(sinfo, channel)
+     rednet.broadcast(sinfo, tostring(channel))
    end
  end
 end
 function serverListener()
   while running == true do
-    local id, msg = rednet.receive(channel,1000)
+    local id, msg, protocol = rednet.receive(tostring(channel),1000)
+    print(id)
+    print(msg)
+    print(protocol)
     if running == true then
      if term.isColor() then
       actualX, actualY = term.getCursorPos()
@@ -101,7 +107,6 @@ function serverListener()
       term.write(tinfo.username)
       term.setTextColor(colors.white)
       term.write("> ")
-     -- term.write(tinfo.message)
       print(tinfo.message)
       term.setTextColor(colors.white)  
       term.setCursorPos(actualX,actualY)
@@ -109,8 +114,8 @@ function serverListener()
       term.write(timeStamp.."| ")
       textutils.pagedPrint(msg,2)
      end
-    else
-     desktop()
+    --else
+     
     end
   end
 end
