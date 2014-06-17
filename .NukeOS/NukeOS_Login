@@ -54,18 +54,8 @@ function welcome()
  term.setBackgroundColor(colors.lightBlue)
  term.setCursorPos(3,5)
  term.clear()
-  welcome = [[
-\             / |------ |      
-          \     ^     /  |       |
-           \   / \   /   |---    |
-            \ /   \ /    |       |
-             V     V     |------ |-----                            
-                                        |------ /------\     ^   ^     |------
-                                        |       |      |    / \ / \    |
-                                        |       |      |   /   V   \   |---
-                                        |       |      |  /         \  |
-                                        |------ \______/ /           \ |------]]
- print(welcome)
+ welcome = paintutils.loadImage(root..".NukeOS/textures/welcome")
+ paintutils.drawImage(welcome,1,1)
  sleep(3)
  shell.run(root..".NukeOS/NukeOS_Desktop")
  end

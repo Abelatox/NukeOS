@@ -1,4 +1,5 @@
-term.write("Do you want to make it compatible with NukeLoader? ")
+print("Do you want to make it compatible")
+term.write("with NukeLoader? ")
 compatible = read()
 if compatible == "Yes" or compatible == "yes" or compatible == "y" or compatible == "Y" then
  hasToBeCompatible = true
@@ -73,11 +74,12 @@ shell.setDir("")
 clear()
 local files = {
  ["NukeOS"] = root..start,
- [".NukeOS/load"] = root..".NukeOS/textures/load",
- [".NukeOS/login"] = root..".NukeOS/textures/login",
- [".NukeOS/bg"] = root..".NukeOS/textures/bg",
+ [".NukeOS/textures/load"] = root..".NukeOS/textures/load",
+ [".NukeOS/textures/login"] = root..".NukeOS/textures/login",
+ [".NukeOS/textures/bg"] = root..".NukeOS/textures/bg",
+ [".NukeOS/textures/chatimg"] = root..".NukeOS/textures/chatimg",
+ [".NukeOS/textures/welcome"] = root..".NukeOS/textures/welcome",
  [".NukeOS/NukeChat"] = root..".NukeOS/NukeChat",
- [".NukeOS/chatimg"] = root..".NukeOS/textures/chatimg",
  [".NukeOS/NukeOS_Login"] = root..".NukeOS/NukeOS_Login",
  [".NukeOS/NukeOS_Desktop"] = root..".NukeOS/NukeOS_Desktop",
 }
