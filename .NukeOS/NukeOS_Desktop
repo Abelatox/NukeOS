@@ -31,6 +31,7 @@ function desktop()
     normalColor()
     isOnDesktop = false
     shell.run(root..".NukeOS/NukeChat")
+    comeFromDesktop = true
    else
     normalColor()
     term.clear()
@@ -273,7 +274,7 @@ function desktop()
                                         end
                                 elseif x > 37 or x < 12 and y > 17 or y < 4 then
                                         desktop()
-                                end--usuario/contrase�A5�A3?B8F�AF�BF�BD83�A5�A3?B8F�AF�BF�BDB1a
+                                end--usuario/contrase�AF�BF�BDA5�AF�BF�BDA3?B8F�AF�BF�BDAF�AF�BF�BDBF�AF�BF�BDBD83�AF�BF�BDA5�AF�BF�BDA3?B8F�AF�BF�BDAF�AF�BF�BDBF�AF�BF�BDBDB1a
                                 isOnDesktop = true
                         elseif x >= 1 and x <= 10 and y == 14 then --execute
                                 isOnDesktop = false
