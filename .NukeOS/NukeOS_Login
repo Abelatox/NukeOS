@@ -29,7 +29,7 @@ function login1()
  term.setTextColor(colors.black)
  term.write("            ")
  
- if numberOfUsers == 2 then
+ if numberOfUsers == "2" then
   --User2
   term.setBackgroundColor(colors.lightGray)
   term.setCursorPos(17,8)
