@@ -293,3 +293,21 @@ end--while escritorio
 isOnDesktop = false
 end --func
 parallel.waitForAny(desktop,clock)
+
+function vistaBar()
+local wid, hei = term.getSize()
+     function drawRectangle(x,y,w,h,clr)
+          for i = 0,  do
+               for z = 0, h do
+                    paintutils.drawPixel(x+i,y+z,clr)
+                end
+          end
+     end
+   function drawClock(xP,yP,w,h,style)
+       style = {}
+      
+   end
+   
+   drawRectangle(win-7, 0, win, hei, colors.cyan)
+   
+end
