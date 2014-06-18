@@ -1,31 +1,29 @@
-term.clear()
+clear()
 term.setCursorPos(1,1)
 running = true
-if pocket then
-mod = "back"
- print("Which channel would you")
- term.write("like to join?: ")
- local channel = read()
- term.clear()
- term.setCursorPos(1,1)
- print("What's your username?")
- user = read()
- rednet.open(mod)
-else
- term.write("Which channel would you like to join?: ")
- local channel = read()
- term.clear()
- term.setCursorPos(1,1)
- term.write("What's your username?: ")
- user = read()
- term.clear()
- term.setCursorPos(1,1)
- for a,b in pairs(rs.getSides()) do
-  if peripheral.getType(b) == 'modem' then
-   rednet.open(b)
-  end
+for k,v in pairs(peripheral.getNames()) do
+ if peripheral.getType(v) == "modem" then
+  mod = peripheral.wrap(v)
  end
 end
+term.clear()
+term.setCursorPos(1,1)
+print("What's your username?")
+user = read()
+if pocket then
+ print("Which channel would you")
+ term.write("like to join? (1-65534): ")
+else
+ print("Which channel would you like to join? (1-65534): ")
+end
+local channel = read()
+if channel == "65535" then
+ print("You may not choose that channel")
+ running = false
+ shell.run(shell.getRunningProgram())
+end
+mod.open(tonumber(channel))
+ 
 local x, y = term.getSize()
 term.clear()
 term.setCursorPos(1,1)
@@ -86,36 +84,33 @@ function chat()
      message=msg
      }
      sinfo = textutils.serialize(info)
-     rednet.broadcast(sinfo, tostring(channel))
+     mod.transmit(tonumber(channel),65535,sinfo)--
    end
  end
 end
 function serverListener()
   while running == true do
-    local id, msg, protocol = rednet.receive(tostring(channel),1000)
-    print(id)
-    print(msg)
-    print(protocol)
+   event, side, sch, rch, msg, dist = os.pullEvent("modem_message")
     if running == true then
-     if term.isColor() then
-      actualX, actualY = term.getCursorPos()
-      term.setCursorPos(1,y)
-      tinfo = textutils.unserialize(msg)
-      term.setTextColor(colors.yellow)
-      term.write(timeStamp.."| ")
-      term.setTextColor(colors.lime)
-      term.write(tinfo.username)
-      term.setTextColor(colors.white)
-      term.write("> ")
-      print(tinfo.message)
-      term.setTextColor(colors.white)  
-      term.setCursorPos(actualX,actualY)
-     else
-      term.write(timeStamp.."| ")
-      textutils.pagedPrint(msg,2)
+     if tonumber(sch) == tonumber(channel) then
+      if term.isColor() then
+       actualX, actualY = term.getCursorPos()
+       term.setCursorPos(1,y)
+       tinfo = textutils.unserialize(msg)
+       term.setTextColor(colors.yellow)
+       term.write(timeStamp.."| ")
+       term.setTextColor(colors.lime)
+       term.write(tinfo.username)
+       term.setTextColor(colors.white)
+       term.write("> ")
+       print(tinfo.message)
+       term.setTextColor(colors.white)  
+       term.setCursorPos(actualX,actualY)
+      else
+       term.write(timeStamp.."| ")
+       textutils.pagedPrint(msg,2)
+      end
      end
-    --else
-     
     end
   end
 end
