@@ -313,4 +313,4 @@ parallel.waitForAny(desktop,clock)
      --   drawRectangle(curX, curY, curW, curH, colors.yellow)
   -- end
   -- drawRectangle(win-7, 0, win, hei, colors.cyan)
-end
+--end
