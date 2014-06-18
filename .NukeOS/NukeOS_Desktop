@@ -31,8 +31,8 @@ function desktop()
     normalColor()
     isOnDesktop = false
     actual = 1
-    shell.run(root..".NukeOS/NukeChat")
     comeFromDesktop = true
+    shell.run(root..".NukeOS/NukeChat")
    else
     normalColor()
     term.clear()
