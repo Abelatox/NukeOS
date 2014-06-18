@@ -30,6 +30,7 @@ function desktop()
    if fs.exists(root..".NukeOS/NukeChat") then
     normalColor()
     isOnDesktop = false
+    actual = 1
     shell.run(root..".NukeOS/NukeChat")
     comeFromDesktop = true
    else
