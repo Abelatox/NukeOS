@@ -294,20 +294,24 @@ isOnDesktop = false
 end --func
 parallel.waitForAny(desktop,clock)
 
-function vistaBar()
+function callthiswhenrightclickondesktop(whichone)
 local wid, hei = term.getSize()
      function drawRectangle(x,y,w,h,clr)
           for i = 0,  do
                for z = 0, h do
-                    paintutils.drawPixel(x+i,y+z,clr)
+                   for x = 0, i+h do
+                        paintutils.drawPixel(x+i,y+z,clr)
+                    end
                 end
           end
      end
-   function drawClock(xP,yP,w,h,style)
-       style = {}
-      
+   function drawNotepad(x,y,w,h,style)
+        curX = wid-w
+        curY = wid-h
+        curW = 7
+        curH = 5
+        drawRectangle(curX, curY, curW, curH, colors.yellow)
    end
-   
    drawRectangle(win-7, 0, win, hei, colors.cyan)
    
 end
