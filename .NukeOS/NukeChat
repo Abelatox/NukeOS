@@ -6,6 +6,8 @@ for k,v in pairs(peripheral.getNames()) do
   mod = peripheral.wrap(v)
  end
 end
+term.clear()
+term.setCursorPos(1,1)
 print("What's your username?")
 user = read()
 if pocket then
@@ -18,13 +20,10 @@ local channel = read()
 if channel == "65535" then
  print("You may not choose that channel")
  running = false
- sleep(1)
  shell.run(shell.getRunningProgram())
 end
 mod.open(tonumber(channel))
-term.clear()
-term.setCursorPos(1,1)
-
+ 
 local x, y = term.getSize()
 term.clear()
 term.setCursorPos(1,1)
