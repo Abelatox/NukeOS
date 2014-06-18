@@ -297,7 +297,7 @@ parallel.waitForAny(desktop,clock)
 function callthiswhenrightclickondesktop(whichone)
 local wid, hei = term.getSize()
      function drawRectangle(x,y,w,h,clr)
-          for i = 0,  do
+          for i = 0 do
                for z = 0, h do
                    for x = 0, i+h do
                         paintutils.drawPixel(x+i,y+z,clr)
