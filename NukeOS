@@ -71,12 +71,13 @@ function all()
   nou = fs.open(root..".NukeOS/nou","w")
    nou.write(totalUsers)
   nou.close()
-  if numberOfUsers == "1" then
+  nouR = fs.open(root..".NukeOS/nou","r")
+  if nouR.readLine() == "1" then
    print("Choose your username:")
    first = read()
    print("Now choose your password:")
    firstp = read("*")
-  elseif numberOfUsers == "2" then  
+  elseif nouR.readLine() == "2" then  
    print("Choose your username:")
    first = read()
    print("Now choose your password:")
@@ -93,7 +94,7 @@ function all()
   file.write()
   file.writeLine(first)
   file.writeLine(firstp)
-  if numberOfUsers == "2" then
+  if nouR.readLine() == "2" then
    file.writeLine(second)
    file.writeLine(secondp)
   else
@@ -101,16 +102,9 @@ function all()
    file.writeLine("")
   end
   file.close()
+  nouR.close()
  end
  shell.run(root..".NukeOS/NukeOS_Login")
- 
- --NukeOS Desktop
  shell.run(root..".NukeOS/NukeOS_Desktop")
- 
-end
-function NOU()
- nouR = fs.open(root..".NukeOS/nou","r")
-  numberOfUsers = nouR.readLine()
- nouR.close()
 end
 parallel.waitForAny(all,clock,NOU)
