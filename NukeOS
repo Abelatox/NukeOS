@@ -67,17 +67,14 @@ function all()
   term.clear()
   term.setTextColor(colors.white)
   print("How many users do you wanna create? 1 or 2")
-  totalUsers = read()
-  nou = fs.open(root..".NukeOS/nou","w")
-   nou.write(totalUsers)
-  nou.close()
-  nouR = fs.open(root..".NukeOS/nou","r")
-  if nouR.readLine() == "1" then
+  numberOfUsers = read()
+ 
+  if numberOfUsers == "1" then
    print("Choose your username:")
    first = read()
    print("Now choose your password:")
    firstp = read("*")
-  elseif nouR.readLine() == "2" then  
+  elseif numberOfUsers == "2" then  
    print("Choose your username:")
    first = read()
    print("Now choose your password:")
@@ -94,7 +91,7 @@ function all()
   file.write()
   file.writeLine(first)
   file.writeLine(firstp)
-  if nouR.readLine() == "2" then
+  if numberOfUsers == "2" then
    file.writeLine(second)
    file.writeLine(secondp)
   else
