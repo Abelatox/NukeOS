@@ -98,7 +98,6 @@ function all()
    file.writeLine("Empty")
    file.writeLine("")
   end
-  file.close()
   nouR.close()
  end
  shell.run(root..".NukeOS/NukeOS_Login")
