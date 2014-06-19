@@ -107,4 +107,4 @@ function all()
  shell.run(root..".NukeOS/NukeOS_Login")
  shell.run(root..".NukeOS/NukeOS_Desktop")
 end
-parallel.waitForAny(all,clock,NOU)
+parallel.waitForAny(all,clock)
