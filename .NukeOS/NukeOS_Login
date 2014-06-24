@@ -14,6 +14,9 @@ function login1()
  user2 = file.readLine(3)
  p2 = file.readLine(4)
  file.close()
+ nou = fs.open(root..".NukeOS/nou","w")
+ NOU = nou.readAll()
+ nou.close()
  --User1
  term.setBackgroundColor(colors.lightGray)
  term.setCursorPos(17,5)
@@ -29,7 +32,7 @@ function login1()
  term.setTextColor(colors.black)
  term.write("            ")
  
- if numberOfUsers == "2" then
+ if NOU == "2" then
   --User2
   term.setBackgroundColor(colors.lightGray)
   term.setCursorPos(17,8)
