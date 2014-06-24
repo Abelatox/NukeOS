@@ -68,7 +68,9 @@ function all()
   term.setTextColor(colors.white)
   print("How many users do you wanna create? 1 or 2")
   numberOfUsers = read()
- 
+ nou = fs.open(root..".NukeChat/nou","w")
+  nou.write(numberOfUsers)
+  nou.close()
   if numberOfUsers == "1" then
    print("Choose your username:")
    first = read()
