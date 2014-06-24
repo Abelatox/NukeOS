@@ -15,7 +15,7 @@ function login1()
  p2 = file.readLine(4)
  file.close()
  nou = fs.open(root..".NukeOS/nou","w")
- NOU = nou.readAll()
+ NOU = nou.readLine()
  nou.close()
  --User1
  term.setBackgroundColor(colors.lightGray)
