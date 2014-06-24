@@ -84,8 +84,8 @@ function all()
    print("Choose your second user's password:")
    secondp = read("*")  
   else
-  print("Number should be 1 or 2")
-  os.reboot()
+   print("Number should be 1 or 2")
+   os.reboot()
   end
   file = fs.open(root..".NukeOS/.NukeOS_Users","w")
   file.write()
@@ -100,6 +100,5 @@ function all()
   end
  end
  shell.run(root..".NukeOS/NukeOS_Login")
- shell.run(root..".NukeOS/NukeOS_Desktop")
 end
 parallel.waitForAny(all,clock)
