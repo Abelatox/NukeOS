@@ -22,7 +22,6 @@ function clock()
   sleep(1)
  end
 end
- 
 function all()
  function boot()
   --NukeOS Boot
@@ -58,7 +57,6 @@ function all()
    sleep(0.1)
   end
  end
- 
  boot()
  --Login
  if not fs.exists(root..".NukeOS/.NukeOS_Users") then
@@ -68,7 +66,7 @@ function all()
   term.setTextColor(colors.white)
   print("How many users do you wanna create? 1 or 2")
   numberOfUsers = read()
- nou = fs.open(root..".NukeChat/nou","w")
+  nou = fs.open(root..".NukeOS/nou","w")
   nou.write(numberOfUsers)
   nou.close()
   if numberOfUsers == "1" then
