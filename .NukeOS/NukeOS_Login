@@ -1,4 +1,3 @@
---Login
 function login1()
  login = paintutils.loadImage(root..".NukeOS/textures/login")
  paintutils.drawImage(login,1,1)
@@ -7,16 +6,15 @@ function login1()
   term.setCursorPos(15,i)
   print("|")
  end
- 
  file = fs.open(root..".NukeOS/.NukeOS_Users", "r")
  user1 = file.readLine(1)
  p1 = file.readLine(2)
  user2 = file.readLine(3)
  p2 = file.readLine(4)
  file.close()
- nuofus = fs.open(root..".NukeOS/nou","r")
- NOU = nuofus.readLine()
- nuofus.close()
+ numofus = fs.open(root..".NukeOS/nou","r")
+ NOU = numofus.readLine()
+ numofus.close()
  --User1
  term.setBackgroundColor(colors.lightGray)
  term.setCursorPos(17,5)
@@ -31,7 +29,6 @@ function login1()
  term.setBackgroundColor(colors.white)
  term.setTextColor(colors.black)
  term.write("            ")
- 
  if NOU == "2" then
   --User2
   term.setBackgroundColor(colors.lightGray)
@@ -96,6 +93,5 @@ function login2()
  end
 end
 login1()
- 
 login2()
 shell.run(root..".NukeOS/NukeOS_Login")
