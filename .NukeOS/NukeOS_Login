@@ -14,7 +14,7 @@ function login1()
  user2 = file.readLine(3)
  p2 = file.readLine(4)
  file.close()
- nou = fs.open(root..".NukeOS/nou","w")
+ nou = fs.open(root..".NukeOS/nou","r")
  NOU = nou.readLine()
  nou.close()
  --User1
