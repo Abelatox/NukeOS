@@ -282,6 +282,7 @@ else
 		  isOnDesktop = true
 		  elseif x >= 1 and x <= 10 and y == 14 then --execute
   		   isOnDesktop = false
+  		   actual = 1
   		   term.setBackgroundColor(colors.black)
 		   term.clear()
 		   term.setCursorPos(1,1)
