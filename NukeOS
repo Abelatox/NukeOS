@@ -98,6 +98,7 @@ function all()
    file.writeLine("Empty")
    file.writeLine("")
   end
+  file.close()
  end
  shell.run(root..".NukeOS/NukeOS_Login")
 end
