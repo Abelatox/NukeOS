@@ -281,13 +281,13 @@ else
 		  end
 		  isOnDesktop = true
 		  elseif x >= 1 and x <= 10 and y == 14 then --execute
-		   isOnDesktop = false
-		   actual = 1
-		   term.setBackgroundColor(colors.black)
-		   term.clear()
-		   term.setCursorPos(1,1)
-		   shell.run("shell")
+		   break
+		   paintutils.drawImage(bg,1,1)
+		   local terminal = multishell.launch({}, "rom/programs/shell")
+		   multishell.setTitle(terminal, "Lua Interpreter")
+                   desktop()
 		  elseif x > 6 or y < 16 or y == 19 then --Start
+		   break
 		   paintutils.drawImage(bg,1,1)
 		   desktop()
 		 end--start menu lista
