@@ -1,13 +1,13 @@
 function clock()
- while true do
-  if isOnDesktop == true then
+ while isOnDesktop do
+ -- if isOnDesktop == true then
    time = os.time()
    time = textutils.formatTime(time,true)
    term.setCursorPos(52-#time, 19)
    term.setBackgroundColor(colors.cyan)
    term.setTextColor(colors.white)
    write(time)
-  end
+  --end
   sleep(1)
  end
 end
