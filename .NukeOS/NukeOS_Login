@@ -1,4 +1,5 @@
 function login1()
+ isOnDesktop = false
  login = paintutils.loadImage(root..".NukeOS/textures/login")
  paintutils.drawImage(login,1,1)
  for i= 3, 16 do
@@ -70,15 +71,17 @@ function sorry()
  login1()
 end
 function login2()
- while true do
+ while isOnDesktop == false do
  pe, pbutton, px, py = os.pullEvent("mouse_click")
   if px >= 17 and px <= 30 and py >= 5 and py <= 6 then
    term.setCursorPos(23,6)
    pass1=read("*")
    if pass1 == p1 then
     actualUser = user1
+    isOnDesktop = true
     welcome()
     else
+    isOnDesktop = true
     sorry()
    end
   elseif numberOfUsers == "2" and px >= 17 and px <= 30 and py >= 8 and py <= 9 then
