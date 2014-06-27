@@ -84,7 +84,7 @@ function login2()
     isOnDesktop = true
     sorry()
    end
-  elseif numberOfUsers == "2" and px >= 17 and px <= 30 and py >= 8 and py <= 9 then
+  elseif NOU == "2" and px >= 17 and px <= 30 and py >= 8 and py <= 9 then
    term.setCursorPos(23,9)
    pass2=read("*")
    if pass2 == p2 then
