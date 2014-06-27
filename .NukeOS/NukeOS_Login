@@ -98,4 +98,3 @@ function login2()
 end
 login1()
 login2()
-shell.run(root..".NukeOS/NukeOS_Login")
