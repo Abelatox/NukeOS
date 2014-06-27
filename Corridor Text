@@ -1,17 +1,25 @@
 local tArgs = {...}
 if #tArgs > 0 then
- texto = tArgs[1]
+ text = tArgs[1]
 else
- texto = "Hola"
+ text = "Coming soon... The Cinema"
 end
-print(texto)
-m = peripheral.wrap("right")
-x, y = m.getSize()
-
+st = 0.2
+for k,v in pairs(peripheral.getNames()) do
+ if peripheral.getType(v) == "monitor" then
+  mon = peripheral.wrap(v)
+ end
+end
+mon.setTextScale(4)
+mx,my = mon.getSize()
+x,y = mx,my
 while true do
- m.setCursorPos(x,1)
- m.clear()
- m.write(texto)
+ if x == 0 - #text then
+  x = mx
+ end
+ mon.setCursorPos(x,1)
+ mon.clear()
+ mon.write(text)
  x = x - 1
- sleep(0.1)
+ sleep(st)
 end
