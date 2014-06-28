@@ -293,6 +293,7 @@ else
 end--while escritorio
 isOnDesktop = false
 end --func
+end
 parallel.waitForAny(desktop,clock)
 
 --function callthiswhenrightclickondesktop(whichone)
