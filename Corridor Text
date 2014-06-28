@@ -1,0 +1,25 @@
+local tArgs = {...}
+if #tArgs > 0 then
+ text = tArgs[1]
+else
+ text = "Coming soon... The Cinema"
+end
+st = 0.2
+for k,v in pairs(peripheral.getNames()) do
+ if peripheral.getType(v) == "monitor" then
+  mon = peripheral.wrap(v)
+ end
+end
+mon.setTextScale(4)
+mx,my = mon.getSize()
+x,y = mx,my
+while true do
+ if x == 0 - #text then
+  x = mx
+ end
+ mon.setCursorPos(x,1)
+ mon.clear()
+ mon.write(text)
+ x = x - 1
+ sleep(st)
+end

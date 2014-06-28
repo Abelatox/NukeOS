@@ -27,7 +27,6 @@ mod.open(tonumber(channel))
 local x, y = term.getSize()
 term.clear()
 term.setCursorPos(1,1)
-local timeStamp = textutils.formatTime(os.time(),true)
 function chat()
    while running == true do
     term.setCursorPos(1, y)
@@ -71,13 +70,13 @@ function chat()
      term.setCursorPos(1,y-1)
      if term.isColor() then
       term.setTextColor(colors.yellow)
-      term.write(timeStamp .. "| ")
+      term.write(textutils.formatTime(os.time(),true).. "| ")
       term.setTextColor(colors.blue)
       term.write(user)
       term.setTextColor(colors.white)
       term.write("> "..msg)    
      else
-      term.write(timeStamp.."| " ..user.."> "..msg)
+      term.write(textutils.formatTime(os.time(),true).."| " ..user.."> "..msg)
      end
      info ={
      username=user,
@@ -98,7 +97,7 @@ function serverListener()
        term.setCursorPos(1,y)
        tinfo = textutils.unserialize(msg)
        term.setTextColor(colors.yellow)
-       term.write(timeStamp.."| ")
+       term.write(textutils.formatTime(os.time(),true).."| ")
        term.setTextColor(colors.lime)
        term.write(tinfo.username)
        term.setTextColor(colors.white)
@@ -107,7 +106,7 @@ function serverListener()
        term.setTextColor(colors.white)  
        term.setCursorPos(actualX,actualY)
       else
-       term.write(timeStamp.."| ")
+       term.write(textutils.formatTime(os.time(),true).."| ")
        textutils.pagedPrint(msg,2)
       end
      end

@@ -79,6 +79,7 @@ local files = {
  [".NukeOS/textures/bg"] = root..".NukeOS/textures/bg",
  [".NukeOS/textures/chatimg"] = root..".NukeOS/textures/chatimg",
  [".NukeOS/textures/welcome"] = root..".NukeOS/textures/welcome",
+ [".NukeOS/textures/sorry"] = root..".NukeOS/textures/sorry",
  [".NukeOS/NukeChat"] = root..".NukeOS/NukeChat",
  [".NukeOS/NukeOS_Login"] = root..".NukeOS/NukeOS_Login",
  [".NukeOS/NukeOS_Desktop"] = root..".NukeOS/NukeOS_Desktop",

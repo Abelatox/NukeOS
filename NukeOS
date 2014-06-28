@@ -22,7 +22,6 @@ function clock()
   sleep(1)
  end
 end
- 
 function all()
  function boot()
   --NukeOS Boot
@@ -58,7 +57,6 @@ function all()
    sleep(0.1)
   end
  end
- 
  boot()
  --Login
  if not fs.exists(root..".NukeOS/.NukeOS_Users") then
@@ -68,6 +66,9 @@ function all()
   term.setTextColor(colors.white)
   print("How many users do you wanna create? 1 or 2")
   numberOfUsers = read()
+  nou = fs.open(root..".NukeOS/nou","w")
+  nou.write(numberOfUsers)
+  nou.close()
   if numberOfUsers == "1" then
    print("Choose your username:")
    first = read()
@@ -83,8 +84,8 @@ function all()
    print("Choose your second user's password:")
    secondp = read("*")  
   else
-  print("Number should be 1 or 2")
-  os.reboot()
+   print("Number should be 1 or 2")
+   os.reboot()
   end
   file = fs.open(root..".NukeOS/.NukeOS_Users","w")
   file.write()
@@ -100,10 +101,5 @@ function all()
   file.close()
  end
  shell.run(root..".NukeOS/NukeOS_Login")
- 
- --NukeOS Desktop
- shell.run(root..".NukeOS/NukeOS_Desktop")
- 
 end
- 
 parallel.waitForAny(all,clock)

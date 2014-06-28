@@ -1,5 +1,5 @@
---Login
 function login1()
+ isOnDesktop = false
  login = paintutils.loadImage(root..".NukeOS/textures/login")
  paintutils.drawImage(login,1,1)
  for i= 3, 16 do
@@ -7,13 +7,15 @@ function login1()
   term.setCursorPos(15,i)
   print("|")
  end
- 
  file = fs.open(root..".NukeOS/.NukeOS_Users", "r")
  user1 = file.readLine(1)
  p1 = file.readLine(2)
  user2 = file.readLine(3)
  p2 = file.readLine(4)
  file.close()
+ numofus = fs.open(root..".NukeOS/nou","r")
+ NOU = numofus.readLine()
+ numofus.close()
  --User1
  term.setBackgroundColor(colors.lightGray)
  term.setCursorPos(17,5)
@@ -28,8 +30,7 @@ function login1()
  term.setBackgroundColor(colors.white)
  term.setTextColor(colors.black)
  term.write("            ")
- 
- if numberOfUsers == "2" then
+ if NOU == "2" then
   --User2
   term.setBackgroundColor(colors.lightGray)
   term.setCursorPos(17,8)
@@ -62,25 +63,28 @@ function welcome()
 function sorry()
  term.setTextColor(colors.white)
  term.setBackgroundColor(colors.lightBlue)
- term.setCursorPos(15,12)
+ term.setCursorPos(3,5)
  term.clear()
- print("Sorry, wrong password ")
- sleep(1)
+ sorry = paintutils.loadImage(root..".NukeOS/textures/sorry")
+ paintutils.drawImage(sorry,1,1)
+ sleep(3)
  login1()
 end
 function login2()
- while true do
+ while isOnDesktop == false do
  pe, pbutton, px, py = os.pullEvent("mouse_click")
   if px >= 17 and px <= 30 and py >= 5 and py <= 6 then
    term.setCursorPos(23,6)
    pass1=read("*")
    if pass1 == p1 then
     actualUser = user1
+    isOnDesktop = true
     welcome()
     else
+    isOnDesktop = true
     sorry()
    end
-  elseif numberOfUsers == "2" and px >= 17 and px <= 30 and py >= 8 and py <= 9 then
+  elseif NOU == "2" and px >= 17 and px <= 30 and py >= 8 and py <= 9 then
    term.setCursorPos(23,9)
    pass2=read("*")
    if pass2 == p2 then
@@ -93,6 +97,4 @@ function login2()
  end
 end
 login1()
- 
 login2()
-shell.run(root..".NukeOS/NukeOS_Login")

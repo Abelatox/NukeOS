@@ -1,0 +1,35 @@
+BootLoader = true
+if not fs.exists("/os") then
+ fs.makeDir("/os")
+ print("OS dir Created")
+end
+if not fs.exists("/os/CraftOS")then
+ cos = fs.open("os/CraftOS","w")
+ cos.write("shell.run('shell')")
+ cos.close()
+end
+if fs.exists("/startup") then
+ if fs.exists("/os/Old_Startup") then
+  fs.delete("/os/Old_Startup")
+ end
+ fs.copy("/startup", "/os/Old_Startup")
+end
+term.clear()
+term.setCursorPos(1,1)
+print("Select the OS you want to load")
+local files = {}
+for k,v in pairs(fs.list("/os/")) do
+ if not fs.isDir("/os/"..v) then
+  table.insert(files, v)
+  print("- "..v)
+ end
+end
+e,button,x,y = os.pullEvent("mouse_click")
+print(y)
+if y > #files then
+ shell.run(shell.getRunningProgram())
+else
+ term.clear()
+ term.setCursorPos(1,1)
+ shell.run("/os/"..files[y-1])
+end
