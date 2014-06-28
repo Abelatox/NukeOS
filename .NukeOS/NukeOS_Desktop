@@ -1,19 +1,18 @@
 function clock()
- while isOnDesktop do
-  time = os.time()
-  time = textutils.formatTime(time,true)
-  term.setCursorPos(52-#time, 19)
-  term.setBackgroundColor(colors.cyan)
-  term.setTextColor(colors.white)
-  write(time)
+ while true do
+  if isOnDesktop == true then
+   time = os.time()
+   time = textutils.formatTime(time,true)
+   term.setCursorPos(52-#time, 19)
+   term.setBackgroundColor(colors.cyan)
+   term.setTextColor(colors.white)
+   write(time)
+  end
   sleep(1)
  end
 end
 function desktop()
  --NukeOS Desktop
-if pocket then
---Pocket pc stuff
-else
  isOnDesktop = true
  bg = paintutils.loadImage(root..".NukeOS/textures/bg")
  paintutils.drawImage(bg,1,1)
@@ -67,7 +66,7 @@ else
    term.setCursorPos(1,16)
    term.write("Change User")
    term.setCursorPos(1,17)
-   term.write("  Reboot   ")
+   term.write("  Restart  ")
    term.setCursorPos(1,18)
    term.write("  Shutdown ")
    term.setTextColor(colors.white)
@@ -293,9 +292,8 @@ else
 end--while escritorio
 isOnDesktop = false
 end --func
-end
 parallel.waitForAny(desktop,clock)
-
+ 
 --function callthiswhenrightclickondesktop(whichone)
 --local wid, hei = term.getSize()
 --     function drawRectangle(x,y,w,h,clr)
