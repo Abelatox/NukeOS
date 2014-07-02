@@ -117,8 +117,10 @@ function serverListener()
        term.setTextColor(colors.white)  
        term.setCursorPos(actualX,actualY)
       else
+       tinfo = textutils.unserialize(msg)
        term.write(textutils.formatTime(os.time(),true).."| ")
-       textutils.pagedPrint(msg,2)
+       term.write(tinfo.username.."> ")
+       textutils.pagedPrint(tinfo.message,2)
       end
      end
     end
